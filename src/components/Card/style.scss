@@ -1,0 +1,89 @@
+.card-article{
+    height: 80vh;
+    width: 28%;
+    background-color:#f6f8fa;
+    color: black;
+    border-radius: 5px;
+}
+
+.header-card{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.array-length{
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-add-header{
+    border: none;
+    background: none;
+}
+
+.text{
+    width: 80%;
+    border-radius: 8px;
+    height: 60px;
+}
+
+.area-text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.btns-div{
+    width: 80%;
+    display: flex;
+    gap: 1rem;;
+    justify-content: center;
+}
+
+.btn-add{
+    background-color: #2ea44f !important;
+    border: none;
+    width: 42%;
+}
+
+.btn-add:hover{
+    background-color: #2ea44f;
+}
+
+.btn-cancel{
+    width: 42%;
+}
+
+.task{
+    background-color:	#d3d3d3;
+    border-radius: 5px;
+    padding: 8px;
+}
+
+.task-list-container{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.footer-task{
+    display: flex;
+    gap: 1rem;
+}
+
+.task * {
+    margin: 0;
+}
+
+.header-task{
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-delTask{
+    background: none;
+    border: none;
+}
