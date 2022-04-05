@@ -1,10 +1,9 @@
-import React, { useState } from "react"
 import { Button } from "react-bootstrap"
 import "./style.scss"
 import { FiPlusCircle } from "react-icons/fi"
 import { BsFillTrashFill } from "react-icons/bs"
 
-type Task = {
+export type Task = {
 	id: number
 	title: string
 	date: any
@@ -13,53 +12,32 @@ type Task = {
 	done: boolean
 }
 
-type Props = {
+interface Props {
 	title: string
+	showAddNote: boolean
+	setShowAddNote: (e: any) => void
+	id: number
+	setId: (e: any) => void
+	textNewTask: string
+	setTextNewTask: (e: any) => void
+	handleSubmit: (e: any) => void
+	handleDelTask: (e: any) => void
+	task: Array
+	setTask: (e: any) => void
 }
 
-const Card = ({ title }: Props) => {
-	const [showAddNote, setShowAddNote] = useState<boolean>(false)
-	const [id, setId] = useState<number>(1)
-	const [textNewTask, setTextNewTask] = useState<any>("")
-	const [task, setTask] = useState<Task[]>([])
-	const date: Date = new Date()
-	const actDate: any =
-		"# Created on " +
-		date.getDay() +
-		"/" +
-		date.getMonth() +
-		"/" +
-		date.getFullYear() +
-		"/" +
-		" at " +
-		date.getHours() +
-		":" +
-		date.getMinutes() +
-		":" +
-		date.getSeconds() +
-		"/"
-
-	const taskObj: Task = {
-		title: textNewTask,
-		id: id,
-		date: actDate,
-		toDo: true,
-		inProgress: false,
-		done: false,
-	}
-
-	const handleSubmit = (e: React.SyntheticEvent) => {
-		e.preventDefault()
-		setTask([...task, taskObj])
-		setId(id + 1)
-		setTextNewTask("")
-	}
-
-	const handleDelTask = (e: any) => {
-		const filterDel = task.filter(t => t.id !== e)
-		setTask(filterDel)
-	}
-
+const Card = ({
+	title,
+	showAddNote,
+	setTask,
+	task,
+	setShowAddNote,
+	id,
+	setId,
+	textNewTask,
+	setTextNewTask,
+	handleSubmit,
+}: Props) => {
 	return (
 		<article className='card-article'>
 			<header className='header-card'>
@@ -106,7 +84,7 @@ const Card = ({ title }: Props) => {
 				</div>
 
 				<div className='task-list-container'>
-					{task.map((e, i) => (
+					{task.map((e: any, i: any) => (
 						<div className='task' key={i}>
 							<header className='header-task'>
 								<p>{e.title}</p>
