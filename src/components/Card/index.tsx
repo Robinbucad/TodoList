@@ -1,43 +1,103 @@
+import React, { useState, useContext } from "react"
 import { Button } from "react-bootstrap"
 import "./style.scss"
 import { FiPlusCircle } from "react-icons/fi"
 import { BsFillTrashFill } from "react-icons/bs"
+import { TasksContext } from "../../context/tasks.context"
 
 export type Task = {
 	id: number
 	title: string
 	date: any
-	toDo: boolean
-	inProgress: boolean
-	done: boolean
+	column: string
 }
 
-interface Props {
+type Props = {
 	title: string
-	showAddNote: boolean
-	setShowAddNote: (e: any) => void
-	id: number
-	setId: (e: any) => void
-	textNewTask: string
-	setTextNewTask: (e: any) => void
-	handleSubmit: (e: any) => void
-	handleDelTask: (e: any) => void
-	task: Array
-	setTask: (e: any) => void
+	taskToDoProp: any[]
+	setTaskToDo: () => void
+	setTaskinProg: () => void
+	setTaskDone: () => void
 }
 
-const Card = ({
-	title,
-	showAddNote,
-	setTask,
-	task,
-	setShowAddNote,
-	id,
-	setId,
-	textNewTask,
-	setTextNewTask,
-	handleSubmit,
-}: Props) => {
+const Card = ({ title, taskToDoProp }: Props) => {
+	const [showAddNote, setShowAddNote] = useState<boolean>(false)
+
+	const [textNewTask, setTextNewTask] = useState<any>("")
+	const [task, setTask] = useState<Task[]>([])
+	const [column, setColumn] = useState<string>("")
+	const date: Date = new Date()
+	const [
+		taskToDo,
+		setTaskToDo,
+		taskInProg,
+		setTaskInProg,
+		taskDone,
+		setTaskDone,
+		id,
+		setId,
+	] = useContext(TasksContext)
+
+	const actDate: any =
+		"# Created on " +
+		date.getDay() +
+		"/" +
+		date.getMonth() +
+		"/" +
+		date.getFullYear() +
+		"/" +
+		" at " +
+		date.getHours() +
+		":" +
+		date.getMinutes() +
+		":" +
+		date.getSeconds() +
+		"/"
+
+	const taskObj: Task = {
+		title: textNewTask,
+		id: id,
+		date: actDate,
+		column: column,
+	}
+
+	const handleSubmit = (e: React.SyntheticEvent) => {
+		e.preventDefault()
+		setTask([...task, taskObj])
+		setId(id + 1)
+		setTextNewTask("")
+
+		if (taskObj.column === "To do") {
+			setTaskToDo([...taskToDo, taskObj])
+		} else if (taskObj.column === "In progress") {
+			setTaskInProg([...taskInProg, taskObj])
+		} else if (taskObj.column === "Done") {
+			setTaskDone([...taskDone, taskObj])
+		}
+	}
+
+	const handleDelTask = (e: any) => {
+		const filterToDoDel = taskToDo.filter((t: any) => t.id !== e)
+		const filterInProgDel = taskInProg.filter((t: any) => t.id !== e)
+		const filterDone = taskDone.filter((t: any) => t.id !== e)
+		setTaskToDo(filterToDoDel)
+		setTaskInProg(filterInProgDel)
+		setTaskDone(filterDone)
+	}
+
+	const handleTextTask = (e: any) => {
+		setTextNewTask(e.target.value)
+		if (title === "To do") {
+			setColumn("To do")
+		}
+		if (title === "In progress") {
+			setColumn("In progress")
+		}
+		if (title === "Done") {
+			setColumn("Done")
+		}
+	}
+
 	return (
 		<article className='card-article'>
 			<header className='header-card'>
@@ -60,7 +120,7 @@ const Card = ({
 						<form onSubmit={handleSubmit} className='area-text'>
 							<textarea
 								value={textNewTask}
-								onChange={e => setTextNewTask(e.target.value)}
+								onChange={handleTextTask}
 								className='text'
 								placeholder='Enter a note'
 							></textarea>
@@ -84,24 +144,68 @@ const Card = ({
 				</div>
 
 				<div className='task-list-container'>
-					{task.map((e: any, i: any) => (
-						<div className='task' key={i}>
-							<header className='header-task'>
-								<p>{e.title}</p>
-								<button
-									onClick={() => handleDelTask(e.id)}
-									className='btn-delTask'
-								>
-									<BsFillTrashFill />
-								</button>
-							</header>
+					{title === "To do"
+						? taskToDoProp.map((e, i) => (
+								<div className='task' key={i}>
+									<header className='header-task'>
+										<p>{e.title}</p>
+										<button
+											onClick={() => handleDelTask(e.id)}
+											className='btn-delTask'
+										>
+											<BsFillTrashFill />
+										</button>
+									</header>
 
-							<footer className='footer-task'>
-								<p>{e.id}</p>
-								<p>{e.date}</p>
-							</footer>
-						</div>
-					))}
+									<footer className='footer-task'>
+										<p>{e.id}</p>
+										<p>{e.date}</p>
+									</footer>
+								</div>
+						  ))
+						: null}
+
+					{title === "In progress"
+						? taskToDoProp.map((e, i) => (
+								<div className='task' key={i}>
+									<header className='header-task'>
+										<p>{e.title}</p>
+										<button
+											onClick={() => handleDelTask(e.id)}
+											className='btn-delTask'
+										>
+											<BsFillTrashFill />
+										</button>
+									</header>
+
+									<footer className='footer-task'>
+										<p>{e.id}</p>
+										<p>{e.date}</p>
+									</footer>
+								</div>
+						  ))
+						: null}
+
+					{title === "Done"
+						? taskToDoProp.map((e, i) => (
+								<div className='task' key={i}>
+									<header className='header-task'>
+										<p>{e.title}</p>
+										<button
+											onClick={() => handleDelTask(e.id)}
+											className='btn-delTask'
+										>
+											<BsFillTrashFill />
+										</button>
+									</header>
+
+									<footer className='footer-task'>
+										<p>{e.id}</p>
+										<p>{e.date}</p>
+									</footer>
+								</div>
+						  ))
+						: null}
 				</div>
 			</section>
 		</article>

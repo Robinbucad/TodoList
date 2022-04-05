@@ -1,14 +1,13 @@
-import "./App.css"
 import CardList from "./components/CardList"
 import Header from "./components/Header/Header"
-import FilterProvider from "./context/filter.provider"
+import TaskProvider from "./context/tasks.provider"
 
 function App() {
 	return (
-		<FilterProvider>
+		<TaskProvider>
 			<Header></Header>
 			<CardList></CardList>
-		</FilterProvider>
+		</TaskProvider>
 	)
 }
 

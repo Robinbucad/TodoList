@@ -13,6 +13,7 @@ module.exports = {
 		"plugin:react/jsx-runtime",
 		"standard",
 		"eslint-config-prettier",
+	
 	],
 	parser: "@typescript-eslint/parser",
 	parserOptions: {
@@ -24,6 +25,6 @@ module.exports = {
 	},
 	plugins: ["react", "@typescript-eslint"],
 	rules: {
-		"no-undef":"off"
+		"no-undef":"off",
 	},
 }
