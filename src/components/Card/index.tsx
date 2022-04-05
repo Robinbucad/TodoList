@@ -4,23 +4,18 @@ import "./style.scss"
 import { FiPlusCircle } from "react-icons/fi"
 import { BsFillTrashFill } from "react-icons/bs"
 import { TasksContext } from "../../context/tasks.context"
-
-export type Task = {
-	id: number
-	title: string
-	date: any
-	column: string
-}
+import { Task } from "../../types"
 
 type Props = {
 	title: string
 	taskToDoProp: any[]
+	lengthTask: number
 	setTaskToDo: () => void
 	setTaskinProg: () => void
 	setTaskDone: () => void
 }
 
-const Card = ({ title, taskToDoProp }: Props) => {
+const Card = ({ title, taskToDoProp, lengthTask }: Props) => {
 	const [showAddNote, setShowAddNote] = useState<boolean>(false)
 
 	const [textNewTask, setTextNewTask] = useState<any>("")
@@ -75,6 +70,10 @@ const Card = ({ title, taskToDoProp }: Props) => {
 			setTaskDone([...taskDone, taskObj])
 		}
 	}
+	localStorage.setItem("To do", JSON.stringify(taskToDo))
+	localStorage.setItem("In Progress", JSON.stringify(taskInProg))
+	localStorage.setItem("Done", JSON.stringify(taskDone))
+	localStorage.setItem("Id", JSON.stringify(id))
 
 	const handleDelTask = (e: any) => {
 		const filterToDoDel = taskToDo.filter((t: any) => t.id !== e)
@@ -102,7 +101,7 @@ const Card = ({ title, taskToDoProp }: Props) => {
 		<article className='card-article'>
 			<header className='header-card'>
 				<div className='array-length'>
-					<p>{task.length}</p>
+					<p>{lengthTask}</p>
 					<p>{title}</p>
 				</div>
 

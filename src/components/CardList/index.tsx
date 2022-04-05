@@ -17,6 +17,7 @@ const CardList = () => {
 		<div className='card-container'>
 			<Card
 				title='To do'
+				lengthTask={taskToDo.length}
 				taskToDoProp={taskToDo}
 				setTaskToDo={setTaskToDo}
 				setTaskinProg={setTaskInProg}
@@ -24,6 +25,7 @@ const CardList = () => {
 			></Card>
 			<Card
 				title='In progress'
+				lengthTask={taskInProg.length}
 				taskToDoProp={taskInProg}
 				setTaskToDo={setTaskToDo}
 				setTaskinProg={setTaskInProg}
@@ -31,6 +33,7 @@ const CardList = () => {
 			></Card>
 			<Card
 				title='Done'
+				lengthTask={taskDone.length}
 				taskToDoProp={taskDone}
 				setTaskToDo={setTaskToDo}
 				setTaskinProg={setTaskInProg}
