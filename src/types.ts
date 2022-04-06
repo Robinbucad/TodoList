@@ -1,6 +1,6 @@
 export type Task = {
 	id: number
 	title: string
-	date: any
+	date: string
 	column: string
 }

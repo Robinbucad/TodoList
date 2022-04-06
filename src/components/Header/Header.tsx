@@ -1,6 +1,7 @@
 import { useContext } from "react"
 import miLogo from "../../assets/images/miLogo.png"
 import { TasksContext } from "../../context/tasks.context"
+import { Task } from "../../types"
 
 import "./style.scss"
 
@@ -18,14 +19,14 @@ const Header = () => {
 		setTaskDone,
 	] = useContext(TasksContext)
 
-	const handleFilter = (e: any) => {
-		const filterToDo = listToDoLocal.filter((t: any) =>
+	const handleFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const filterToDo = listToDoLocal.filter((t: Task) =>
 			t.title.toLowerCase().includes(e.target.value)
 		)
-		const filterInProg = listInProgLocal.filter((t: any) =>
+		const filterInProg = listInProgLocal.filter((t: Task) =>
 			t.title.toLowerCase().includes(e.target.value)
 		)
-		const filterDone = listDoneLocal.filter((t: any) =>
+		const filterDone = listDoneLocal.filter((t: Task) =>
 			t.title.toLowerCase().includes(e.target.value)
 		)
 

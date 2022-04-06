@@ -8,17 +8,17 @@ import { Task } from "../../types"
 
 type Props = {
 	title: string
-	taskToDoProp: any[]
+	taskToDoProp: Task[]
 	lengthTask: number
-	setTaskToDo: () => void
-	setTaskinProg: () => void
-	setTaskDone: () => void
+	setTaskToDo?: () => void
+	setTaskinProg?: () => void
+	setTaskDone?: () => void
 }
 
-const Card = ({ title, taskToDoProp, lengthTask }: Props) => {
+const Card: React.FC<Props> = ({ title, taskToDoProp, lengthTask }: Props) => {
 	const [showAddNote, setShowAddNote] = useState<boolean>(false)
 
-	const [textNewTask, setTextNewTask] = useState<any>("")
+	const [textNewTask, setTextNewTask] = useState<string>("")
 	const [task, setTask] = useState<Task[]>([])
 	const [column, setColumn] = useState<string>("")
 	const date: Date = new Date()
@@ -33,7 +33,7 @@ const Card = ({ title, taskToDoProp, lengthTask }: Props) => {
 		setId,
 	] = useContext(TasksContext)
 
-	const actDate: any =
+	const actDate: string =
 		"# Created on " +
 		date.getDay() +
 		"/" +
@@ -76,15 +76,15 @@ const Card = ({ title, taskToDoProp, lengthTask }: Props) => {
 	localStorage.setItem("Id", JSON.stringify(id))
 
 	const handleDelTask = (e: any) => {
-		const filterToDoDel = taskToDo.filter((t: any) => t.id !== e)
-		const filterInProgDel = taskInProg.filter((t: any) => t.id !== e)
-		const filterDone = taskDone.filter((t: any) => t.id !== e)
+		const filterToDoDel = taskToDo.filter((t: Task) => t.id !== e)
+		const filterInProgDel = taskInProg.filter((t: Task) => t.id !== e)
+		const filterDone = taskDone.filter((t: Task) => t.id !== e)
 		setTaskToDo(filterToDoDel)
 		setTaskInProg(filterInProgDel)
 		setTaskDone(filterDone)
 	}
 
-	const handleTextTask = (e: any) => {
+	const handleTextTask = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
 		setTextNewTask(e.target.value)
 		if (title === "To do") {
 			setColumn("To do")
