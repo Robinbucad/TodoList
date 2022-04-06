@@ -17,13 +17,13 @@ export function useFetchData<T> (url:string) {
     })
     const [ids,setIds] = useState<number[]>([])
     const [
-		taskToDo, 
+		taskToDo,
 		setTaskToDo,
 		taskInProg,
 		setTaskInProg,
 		taskDone,
 		setTaskDone,
-        id,
+        id, 
         setId
 	] = useContext(TasksContext)
 
@@ -75,8 +75,8 @@ export function useFetchData<T> (url:string) {
 
 }
 
-export function usePostData (){
-    const [postState,setPostState] = useState({
+export function usePostData<T>(){
+    const [postState,setPostState] = useState<UseFetchState<T>>({
         state:"nothing",
         data:null,
         error:null
@@ -108,9 +108,23 @@ export function usePostData (){
             setPostState({
                 data:null,
                 state:"error",
-                error: null                
+                error: err as Error                
             })
         }
     }
     return {postTask, postState}
+}
+
+export function useDelData(){
+ 
+    const delSingleTask = async(url:string) => {
+        try{
+          await fetch(url, {
+                method:'delete'
+            })     
+        }catch(err){
+           alert(err)
+        }
+    }
+    return {delSingleTask}
 }

@@ -16,7 +16,6 @@ const CardList = () => {
 	] = useContext(TasksContext)
 
 	const fetchState = useFetchData<Task[]>("http://localhost:4000/toDo")
-
 	if (fetchState.state === "loading" || fetchState.state === "nothing") {
 		return <div>Cargando...</div>
 	}

@@ -1,6 +1,6 @@
 import { useState, ReactNode } from "react"
+import { useDelData } from "../API"
 import { Task } from "../types"
-
 import { TasksContext } from "./tasks.context"
 
 type Props = {

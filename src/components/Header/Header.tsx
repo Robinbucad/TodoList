@@ -1,20 +1,9 @@
-import { useContext } from "react"
+import { useDelData } from "../../API"
 import miLogo from "../../assets/images/miLogo.png"
-import { TasksContext } from "../../context/tasks.context"
-import { Task } from "../../types"
 
 import "./style.scss"
 
 const Header = () => {
-	const [
-		taskToDo, // eslint-disable-line no-unused-vars
-		setTaskToDo,
-		taskInProg, // eslint-disable-line no-unused-vars
-		setTaskInProg,
-		taskDone, // eslint-disable-line no-unused-vars
-		setTaskDone,
-	] = useContext(TasksContext)
-
 	return (
 		<>
 			<header className='header-app'>
