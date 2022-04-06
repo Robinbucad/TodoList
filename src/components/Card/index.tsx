@@ -5,6 +5,7 @@ import { FiPlusCircle } from "react-icons/fi"
 import { BsFillTrashFill } from "react-icons/bs"
 import { TasksContext } from "../../context/tasks.context"
 import { Task } from "../../types"
+import { usePostData } from "../../API"
 
 type Props = {
 	title: string
@@ -17,6 +18,10 @@ type Props = {
 
 const Card: React.FC<Props> = ({ title, taskToDoProp, lengthTask }: Props) => {
 	const [showAddNote, setShowAddNote] = useState<boolean>(false)
+	const { postTask, postState } = usePostData()
+	if (postState.state === "error" || !postTask) {
+		return <div>Error</div>
+	}
 
 	const [textNewTask, setTextNewTask] = useState<string>("")
 	const [task, setTask] = useState<Task[]>([])
@@ -61,7 +66,7 @@ const Card: React.FC<Props> = ({ title, taskToDoProp, lengthTask }: Props) => {
 		setTask([...task, taskObj])
 		setId(id + 1)
 		setTextNewTask("")
-
+		postTask("http://localhost:4000/toDo", taskObj)
 		if (taskObj.column === "To do") {
 			setTaskToDo([...taskToDo, taskObj])
 		} else if (taskObj.column === "In progress") {
@@ -70,10 +75,6 @@ const Card: React.FC<Props> = ({ title, taskToDoProp, lengthTask }: Props) => {
 			setTaskDone([...taskDone, taskObj])
 		}
 	}
-	localStorage.setItem("To do", JSON.stringify(taskToDo))
-	localStorage.setItem("In Progress", JSON.stringify(taskInProg))
-	localStorage.setItem("Done", JSON.stringify(taskDone))
-	localStorage.setItem("Id", JSON.stringify(id))
 
 	const handleDelTask = (e: any) => {
 		const filterToDoDel = taskToDo.filter((t: Task) => t.id !== e)
