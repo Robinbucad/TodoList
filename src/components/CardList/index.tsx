@@ -13,6 +13,14 @@ const CardList = () => {
 		setTaskInProg,
 		taskDone,
 		setTaskDone,
+		id,
+		setId,
+		filterToDo,
+		setToDoFilter,
+		filterInProg,
+		setFilterinProg,
+		filterDone,
+		setFilterDone,
 	] = useContext(TasksContext)
 
 	const fetchState = useFetchData<Task[]>("http://localhost:4000/toDo")
@@ -28,7 +36,7 @@ const CardList = () => {
 			<Card
 				title='To do'
 				lengthTask={taskToDo.length}
-				taskToDoProp={taskToDo}
+				taskToDoProp={filterToDo}
 				setTaskToDo={setTaskToDo}
 				setTaskinProg={setTaskInProg}
 				setTaskDone={setTaskDone}
@@ -36,7 +44,7 @@ const CardList = () => {
 			<Card
 				title='In progress'
 				lengthTask={taskInProg.length}
-				taskToDoProp={taskInProg}
+				taskToDoProp={filterInProg}
 				setTaskToDo={setTaskToDo}
 				setTaskinProg={setTaskInProg}
 				setTaskDone={setTaskDone}
@@ -44,7 +52,7 @@ const CardList = () => {
 			<Card
 				title='Done'
 				lengthTask={taskDone.length}
-				taskToDoProp={taskDone}
+				taskToDoProp={filterDone}
 				setTaskToDo={setTaskToDo}
 				setTaskinProg={setTaskInProg}
 				setTaskDone={setTaskDone}

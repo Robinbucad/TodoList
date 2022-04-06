@@ -37,6 +37,12 @@ const Card: React.FC<Props> = ({ title, taskToDoProp, lengthTask }: Props) => {
 		setTaskDone,
 		id,
 		setId,
+		filterToDo,
+		setFilterToDo,
+		filterInProg,
+		setFilterInProg,
+		filterDone,
+		setFilterDone,
 	] = useContext(TasksContext)
 
 	const actDate: string =
@@ -70,10 +76,13 @@ const Card: React.FC<Props> = ({ title, taskToDoProp, lengthTask }: Props) => {
 		postTask("http://localhost:4000/toDo", taskObj)
 		if (taskObj.column === "To do") {
 			setTaskToDo([...taskToDo, taskObj])
+			setFilterToDo([...taskToDo, taskObj])
 		} else if (taskObj.column === "In progress") {
 			setTaskInProg([...taskInProg, taskObj])
+			setFilterInProg([...taskInProg, taskObj])
 		} else if (taskObj.column === "Done") {
 			setTaskDone([...taskDone, taskObj])
+			setFilterDone([...taskDone, taskObj])
 		}
 	}
 
@@ -86,6 +95,10 @@ const Card: React.FC<Props> = ({ title, taskToDoProp, lengthTask }: Props) => {
 		setTaskToDo(filterToDoDel)
 		setTaskInProg(filterInProgDel)
 		setTaskDone(filterDone)
+
+		setFilterToDo(filterToDoDel)
+		setFilterInProg(filterInProgDel)
+		setFilterDone(filterDone)
 	}
 
 	const handleTextTask = (e: React.ChangeEvent<HTMLTextAreaElement>) => {

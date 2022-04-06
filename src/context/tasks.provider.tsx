@@ -1,5 +1,4 @@
 import { useState, ReactNode } from "react"
-import { useDelData } from "../API"
 import { Task } from "../types"
 import { TasksContext } from "./tasks.context"
 
@@ -12,6 +11,9 @@ const TaskProvider: React.FC<Props> = ({ children }: Props) => {
 	const [taskInProg, setTaskInProg] = useState<Task[]>([])
 	const [taskDone, setTaskDone] = useState<Task[]>([])
 	const [id, setId] = useState<number>(1)
+	const [filterToDo, setFilterToDo] = useState<Task[]>([])
+	const [filterInProg, setFilterinProg] = useState<Task[]>([])
+	const [filterDone, setFilterDone] = useState<Task[]>([])
 	return (
 		<TasksContext.Provider
 			value={[
@@ -23,6 +25,12 @@ const TaskProvider: React.FC<Props> = ({ children }: Props) => {
 				setTaskDone,
 				id,
 				setId,
+				filterToDo,
+				setFilterToDo,
+				filterInProg,
+				setFilterinProg,
+				filterDone,
+				setFilterDone,
 			]}
 		>
 			{children}
