@@ -4,3 +4,11 @@ export type Task = {
 	date: string
 	column: string
 }
+
+export type SingleTaskProps = {
+	title: string
+	id: number
+	date: string,
+	column:string
+	handleDelTask: (id: number) => void
+}

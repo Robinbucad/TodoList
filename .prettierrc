@@ -3,5 +3,7 @@
 	"semi": false,
 	"singleQuotes": true,
 	"jsxSingleQuote": true,
-	"arrowParens": "avoid"
+	"arrowParens": "avoid",
+	"editor.formatOnSave": true,
+    "prettier.semi": false
 }

@@ -124,16 +124,41 @@ export function usePostData<T>(){
     return {postTask, postState}
 }
 
-export function useDelData(){
+export function useCheckTaskDat<T>(){
+    const [taskState,setTaskState] = useState<UseFetchState<T>>({
+        state:'nothing',
+        data:null,
+        error:null
+    })
  
-    const delSingleTask = async(url:string) => {
+    const checkSingleTask = async(url:string, method:string, body?:string) => {
+ 
         try{
-          await fetch(url, {
-                method:'delete'
-            })     
+            setTaskState(val =>({
+                ...val,
+                state:"loading"
+            }))
+            const res = await fetch(url, {
+                method:method,
+                headers:{
+                    "Content-type":"application/json"
+                },
+                body:JSON.stringify({
+                    title:body
+                })
+            })   
+            const dat = await res.json()
+            console.log(dat)
+            if(res.ok){
+                setTaskState({
+                    state:"success",
+                    data:dat,
+                    error:null
+                })
+            }
         }catch(err){
            alert(err)
         }
     }
-    return {delSingleTask}
+    return {checkSingleTask, taskState}
 }

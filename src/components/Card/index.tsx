@@ -2,10 +2,10 @@ import React, { useState, useContext } from "react"
 import { Button } from "react-bootstrap"
 import "./style.scss"
 import { FiPlusCircle } from "react-icons/fi"
-import { BsFillTrashFill } from "react-icons/bs"
 import { TasksContext } from "../../context/tasks.context"
 import { Task } from "../../types"
-import { useDelData, usePostData } from "../../API"
+import { useCheckTaskDat, usePostData } from "../../API"
+import { SingleTask } from "../Task"
 
 type Props = {
 	title: string
@@ -19,7 +19,7 @@ type Props = {
 const Card: React.FC<Props> = ({ title, taskToDoProp, lengthTask }: Props) => {
 	const [showAddNote, setShowAddNote] = useState<boolean>(false)
 	const { postTask, postState } = usePostData<Task[]>()
-	const { delSingleTask } = useDelData()
+	const { checkSingleTask } = useCheckTaskDat()
 	if (postState.state === "error" || !postTask) {
 		return <div>Error</div>
 	}
@@ -90,7 +90,7 @@ const Card: React.FC<Props> = ({ title, taskToDoProp, lengthTask }: Props) => {
 		const filterToDoDel = taskToDo.filter((t: Task) => t.id !== e)
 		const filterInProgDel = taskInProg.filter((t: Task) => t.id !== e)
 		const filterDone = taskDone.filter((t: Task) => t.id !== e)
-		delSingleTask(`http://localhost:4000/toDo/${e}`)
+		checkSingleTask(`http://localhost:4000/toDo/${e}`, "delete")
 
 		setTaskToDo(filterToDoDel)
 		setTaskInProg(filterInProgDel)
@@ -162,65 +162,41 @@ const Card: React.FC<Props> = ({ title, taskToDoProp, lengthTask }: Props) => {
 
 					<div className='task-list-container'>
 						{title === "To do"
-							? taskToDoProp.map((e, i) => (
-									<div className='task' key={i}>
-										<header className='header-task'>
-											<p>{e.title}</p>
-											<button
-												onClick={() => handleDelTask(e.id)}
-												className='btn-delTask'
-											>
-												<BsFillTrashFill />
-											</button>
-										</header>
-
-										<footer className='footer-task'>
-											<p>{e.id}</p>
-											<p>{e.date}</p>
-										</footer>
-									</div>
+							? taskToDoProp.map((e: Task) => (
+									<SingleTask
+										title={e.title}
+										id={e.id}
+										date={e.date}
+										handleDelTask={() => handleDelTask(e.id)}
+										column={e.column}
+										key={e.id}
+									></SingleTask>
 							  ))
 							: null}
 
 						{title === "In progress"
-							? taskToDoProp.map((e, i) => (
-									<div className='task' key={i}>
-										<header className='header-task'>
-											<p>{e.title}</p>
-											<button
-												onClick={() => handleDelTask(e.id)}
-												className='btn-delTask'
-											>
-												<BsFillTrashFill />
-											</button>
-										</header>
-
-										<footer className='footer-task'>
-											<p>{e.id}</p>
-											<p>{e.date}</p>
-										</footer>
-									</div>
+							? taskToDoProp.map((e: Task) => (
+									<SingleTask
+										title={e.title}
+										id={e.id}
+										date={e.date}
+										handleDelTask={() => handleDelTask(e.id)}
+										column={e.column}
+										key={e.id}
+									></SingleTask>
 							  ))
 							: null}
 
 						{title === "Done"
-							? taskToDoProp.map((e, i) => (
-									<div className='task' key={i}>
-										<header className='header-task'>
-											<p>{e.title}</p>
-											<button
-												onClick={() => handleDelTask(e.id)}
-												className='btn-delTask'
-											>
-												<BsFillTrashFill />
-											</button>
-										</header>
-
-										<footer className='footer-task'>
-											<p>{e.id}</p>
-											<p>{e.date}</p>
-										</footer>
-									</div>
+							? taskToDoProp.map((e: Task) => (
+									<SingleTask
+										title={e.title}
+										id={e.id}
+										date={e.date}
+										handleDelTask={() => handleDelTask(e.id)}
+										column={e.column}
+										key={e.id}
+									></SingleTask>
 							  ))
 							: null}
 					</div>
