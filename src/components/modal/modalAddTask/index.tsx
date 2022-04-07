@@ -54,7 +54,10 @@ function ModalAdd(props: Props) {
 
 	return (
 		<Modal {...props} aria-labelledby='contained-modal-title-vcenter' centered>
-			<div style={{ background: "#B3BFE3", borderRadius: "10px" }}>
+			<div
+				data-testid='btnAdd'
+				style={{ background: "#B3BFE3", borderRadius: "10px" }}
+			>
 				<Modal.Header style={{ border: "none" }} closeButton>
 					<Modal.Title id='contained-modal-title-vcenter'>
 						Nueva tarea
@@ -66,16 +69,22 @@ function ModalAdd(props: Props) {
 						onChange={e => setTextNewTask(e.target.value)}
 						type='text'
 						className='input-add-task'
+						placeholder='Añade una tarea aqui...'
 					/>
 					{textNewTask === "" ? (
 						<button
+							data-testid='button'
 							onClick={() => alert("Este campo no puede estar vacío")}
 							className='btn-add-modal'
 						>
-							Add
+							Type
 						</button>
 					) : (
-						<button onClick={handleSubmit} className='btn-add-modal'>
+						<button
+							data-testid='buttonAdd'
+							onClick={handleSubmit}
+							className='btn-add-modal'
+						>
 							Add
 						</button>
 					)}
