@@ -52,53 +52,37 @@ const Card: React.FC<Props> = ({ title, taskToDoProp, lengthTask }: Props) => {
 	}
 
 	return (
-		<>
-			<article className='card-article'>
-				{title === "To do" ? (
-					<header className='header-card'>
-						<div>
-							<div className='array-length'>
-								<p className='title-task'>
-									Tienes {lengthTask} tareas por hacer
-								</p>
-								<button
-									className='btn-add-header'
-									onClick={() => setModalShow(!modalShow)}
-								>
-									<FiPlusCircle></FiPlusCircle> Añadir tarea
-								</button>
-							</div>
-						</div>
-					</header>
-				) : null}
-
-				<section>
+		<div className='card-article'>
+			{title === "To do" ? (
+				<header className='header-card'>
 					<div>
-						<ModalAdd
-							size='md'
-							show={modalShow}
-							onHide={() => setModalShow(false)}
-						/>
-					</div>
-
-					<div className='task-list-container'>
-						<div className='list'>
-							<p className='to-do'>{title}</p>
-							{title === "To do"
-								? taskToDoProp.map((e: Task) => (
-										<SingleTask
-											title={e.title}
-											id={e.id}
-											date={e.date}
-											status={e.status}
-											handleDelTask={() => handleDelTask(e.id)}
-											key={e.id}
-										></SingleTask>
-								  ))
-								: null}
+						<div className='array-length'>
+							<p className='title-task'>Tienes {lengthTask} tareas por hacer</p>
+							<button
+								data-testid='btnModal'
+								className='btn-add-header'
+								onClick={() => setModalShow(!modalShow)}
+							>
+								<FiPlusCircle></FiPlusCircle> Añadir tarea
+							</button>
 						</div>
+					</div>
+				</header>
+			) : null}
 
-						{title === "Done"
+			<section>
+				<div>
+					<ModalAdd
+						size='md'
+						show={modalShow}
+						onHide={() => setModalShow(false)}
+					/>
+				</div>
+
+				<div className='task-list-container'>
+					<div className='list'>
+						<p className='to-do'>{title}</p>
+						{title === "To do"
 							? taskToDoProp.map((e: Task) => (
 									<SingleTask
 										title={e.title}
@@ -111,9 +95,22 @@ const Card: React.FC<Props> = ({ title, taskToDoProp, lengthTask }: Props) => {
 							  ))
 							: null}
 					</div>
-				</section>
-			</article>
-		</>
+
+					{title === "Done"
+						? taskToDoProp.map((e: Task) => (
+								<SingleTask
+									title={e.title}
+									id={e.id}
+									date={e.date}
+									status={e.status}
+									handleDelTask={() => handleDelTask(e.id)}
+									key={e.id}
+								></SingleTask>
+						  ))
+						: null}
+				</div>
+			</section>
+		</div>
 	)
 }
 

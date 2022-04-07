@@ -9,10 +9,10 @@ const Header = () => {
 		useContext(TasksContext)
 
 	const filterTasks = (e: any) => {
-		const filteredList = taskToDo.filter((task: Task) =>
+		const filteredList = taskToDo?.filter((task: Task) =>
 			task.title.toLowerCase().includes(e.target.value)
 		)
-		const filteredDone = taskDone.filter((task: Task) =>
+		const filteredDone = taskDone?.filter((task: Task) =>
 			task.title.toLowerCase().includes(e.target.value)
 		)
 		setFilterToDo(filteredList)
@@ -21,7 +21,7 @@ const Header = () => {
 
 	return (
 		<div className='search-filter'>
-			<div className='div-filter'>
+			<div data-testid='searchBar' className='div-filter'>
 				<AiOutlineSearch className='icon-search' />
 				<input
 					onChange={filterTasks}

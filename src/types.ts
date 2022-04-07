@@ -9,7 +9,7 @@ export type Task = {
 export type SingleTaskProps = {
 	title: string,
 	id: number,
-	date: string,
+	date?: string,
 	status : string,
 	handleDelTask:(id:number) => void
 }
