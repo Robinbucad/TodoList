@@ -2,13 +2,14 @@ export type Task = {
 	id:  1 | number
 	title: string
 	date: string
-	column: string
+	status: string
+	column:string
 }
 
 export type SingleTaskProps = {
-	title: string
-	id: number
+	title: string,
+	id: number,
 	date: string,
-	column:string
-	handleDelTask: (id: number) => void
+	status : string,
+	handleDelTask:(id:number) => void
 }

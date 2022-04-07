@@ -1,6 +1,11 @@
 .card-container{
     padding: 10px;
+    height: 88vh;
+    min-width: 92vw;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     gap: 2rem;
+    background-color:white;
+    border-radius: 22px;
 }

@@ -3,25 +3,19 @@ import { useFetchData } from "../../API"
 import { TasksContext } from "../../context/tasks.context"
 import { Task } from "../../types"
 import Card from "../Card"
+import Header from "../Header/Header"
 import "./style.scss"
 
 const CardList = () => {
-	const [
+	const {
 		taskToDo,
 		setTaskToDo,
-		taskInProg,
 		setTaskInProg,
 		taskDone,
 		setTaskDone,
-		id,
-		setId,
 		filterToDo,
-		setToDoFilter,
-		filterInProg,
-		setFilterinProg,
 		filterDone,
-		setFilterDone,
-	] = useContext(TasksContext)
+	} = useContext(TasksContext)
 
 	const fetchState = useFetchData<Task[]>("http://localhost:4000/toDo")
 	if (fetchState.state === "loading" || fetchState.state === "nothing") {
@@ -33,6 +27,7 @@ const CardList = () => {
 
 	return (
 		<div className='card-container'>
+			<Header></Header>
 			<Card
 				title='To do'
 				lengthTask={taskToDo.length}
@@ -41,14 +36,7 @@ const CardList = () => {
 				setTaskinProg={setTaskInProg}
 				setTaskDone={setTaskDone}
 			></Card>
-			<Card
-				title='In progress'
-				lengthTask={taskInProg.length}
-				taskToDoProp={filterInProg}
-				setTaskToDo={setTaskToDo}
-				setTaskinProg={setTaskInProg}
-				setTaskDone={setTaskDone}
-			></Card>
+
 			<Card
 				title='Done'
 				lengthTask={taskDone.length}

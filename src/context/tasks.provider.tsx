@@ -12,11 +12,11 @@ const TaskProvider: React.FC<Props> = ({ children }: Props) => {
 	const [taskDone, setTaskDone] = useState<Task[]>([])
 	const [id, setId] = useState<number>(1)
 	const [filterToDo, setFilterToDo] = useState<Task[]>([])
-	const [filterInProg, setFilterinProg] = useState<Task[]>([])
+	const [filterInProg, setFilterInProg] = useState<Task[]>([])
 	const [filterDone, setFilterDone] = useState<Task[]>([])
 	return (
 		<TasksContext.Provider
-			value={[
+			value={{
 				taskToDo,
 				setTaskToDo,
 				taskInProg,
@@ -28,10 +28,10 @@ const TaskProvider: React.FC<Props> = ({ children }: Props) => {
 				filterToDo,
 				setFilterToDo,
 				filterInProg,
-				setFilterinProg,
+				setFilterInProg,
 				filterDone,
 				setFilterDone,
-			]}
+			}}
 		>
 			{children}
 		</TasksContext.Provider>

@@ -6,12 +6,24 @@
 }
 
 body{
-	background: url(./assets/images/bg.jpg);
+	background:#B3BFE3;
 	background-repeat: no-repeat;
 	
+}
+
+.app-container{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+	align-items: center;
 }
 
 @font-face {
 	font-family:'uniSans' ;
 	src: url(./assets/fonts/uniSans/uniSans.woff);
+}
+
+.modal-content{
+    border-radius: 12px !important;
 }

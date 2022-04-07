@@ -16,22 +16,12 @@ export function useFetchData<T> (url:string) {
         error:null,
     })
     const [ids,setIds] = useState<number[]>([])
-    const [
-		taskToDo,
+    const{ 
 		setTaskToDo,
-		taskInProg,
-		setTaskInProg,
-		taskDone,
-		setTaskDone,
-        id, 
         setId,
-        filterToDo,
-        setFilterToDo,
-        filterInProg,
-        setFilterinProg,
-        filterDone,
-        setFilterDone
-	] = useContext(TasksContext)
+
+        setFilterToDo}
+	 = useContext(TasksContext)
 
     useEffect(() => {
         const fetchData = async() => {
@@ -44,12 +34,7 @@ export function useFetchData<T> (url:string) {
                 if(res.ok){
                     const dat = await res.json()
                     setFilterToDo(dat.filter((task:Task) => task.column === 'To do'))
-                    setTaskToDo(dat.filter((task:Task) => task.column === 'To do'))
-                    setTaskInProg(dat.filter((task:Task) => task.column === 'In progress'))
-                    setFilterinProg(dat.filter((task:Task) => task.column === 'In progress'))
-                    setTaskDone(dat.filter((task:Task) => task.column === 'Done'))
-                    setFilterDone(dat.filter((task:Task) => task.column === 'Done'))
-                    
+                    setTaskToDo(dat.filter((task:Task) => task.column === 'To do'))               
                     dat.map((d:Task) => {
                     ids.push(d.id)
                     return setIds(ids)  
