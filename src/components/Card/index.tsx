@@ -54,8 +54,8 @@ const Card: React.FC<Props> = ({ title, taskToDoProp, lengthTask }: Props) => {
 	return (
 		<>
 			<article className='card-article'>
-				<header className='header-card'>
-					{title === "To do" ? (
+				{title === "To do" ? (
+					<header className='header-card'>
 						<div>
 							<div className='array-length'>
 								<p className='title-task'>
@@ -69,8 +69,8 @@ const Card: React.FC<Props> = ({ title, taskToDoProp, lengthTask }: Props) => {
 								</button>
 							</div>
 						</div>
-					) : null}
-				</header>
+					</header>
+				) : null}
 
 				<section>
 					<div>

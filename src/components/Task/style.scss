@@ -2,23 +2,27 @@
 .btn-divOpts{
     display: flex;
     gap: 1rem;
+    margin-right: 12px;
 }
 
 .placeHolderEdit{
     padding: 3px;
     border-radius: 4px;
     border: none;
-    width: 60%;
+    width: 300px;
+    background-color:#B3BFE3;
 }
 
 .head-task{
     display: flex;
     justify-content: space-between;
-    width: 60%;
+    width: 72%;
+    align-items: center;
 }
 
-.inProgress{
-    background-color: #56CCF2;
+.pending{
+    background-color:#FCEBDB;
+    color: #F2994A;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -27,6 +31,35 @@
     width: 100px;
     text-align: center;
     border-radius: 14px;
+    border: none;
+}
+
+.in-prog{
+    background-color:#DDF5FC;
+    color: #56CCF2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    height: 22px;
+    width: 100px;
+    text-align: center;
+    border-radius: 14px;
+    border: none;
+}
+
+.completed{
+    background-color:	#08ff00;
+    color: 	#00b100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    height: 22px;
+    width: 100px;
+    text-align: center;
+    border-radius: 14px;
+    border: none;
 }
 
 .task{
@@ -43,3 +76,15 @@ li::marker {
     color: #C576B4;
    font-size: 22px
 }
+
+.btn-circle{
+    border: none;
+    background:none;
+}
+
+.importancy-div{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+

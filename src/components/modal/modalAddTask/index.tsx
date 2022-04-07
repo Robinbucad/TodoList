@@ -67,9 +67,18 @@ function ModalAdd(props: Props) {
 						type='text'
 						className='input-add-task'
 					/>
-					<button onClick={handleSubmit} className='btn-add-modal'>
-						Add
-					</button>
+					{textNewTask === "" ? (
+						<button
+							onClick={() => alert("Este campo no puede estar vacío")}
+							className='btn-add-modal'
+						>
+							Add
+						</button>
+					) : (
+						<button onClick={handleSubmit} className='btn-add-modal'>
+							Add
+						</button>
+					)}
 				</Modal.Body>
 			</div>
 		</Modal>

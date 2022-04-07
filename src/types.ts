@@ -13,3 +13,5 @@ export type SingleTaskProps = {
 	status : string,
 	handleDelTask:(id:number) => void
 }
+
+export type Importance = 'minor' | 'normal' | 'important'

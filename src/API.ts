@@ -19,8 +19,10 @@ export function useFetchData<T> (url:string) {
     const{ 
 		setTaskToDo,
         setId,
-
-        setFilterToDo}
+        setFilterToDo,
+        setTaskDone,
+        setFilterDone
+    }
 	 = useContext(TasksContext)
 
     useEffect(() => {
@@ -34,7 +36,9 @@ export function useFetchData<T> (url:string) {
                 if(res.ok){
                     const dat = await res.json()
                     setFilterToDo(dat.filter((task:Task) => task.column === 'To do'))
-                    setTaskToDo(dat.filter((task:Task) => task.column === 'To do'))               
+                    setTaskToDo(dat.filter((task:Task) => task.column === 'To do'))   
+                    setTaskDone(dat.filter((task:Task) => task.column === 'Done'))
+                    setFilterDone(dat.filter((task:Task) => task.column === 'Done'))             
                     dat.map((d:Task) => {
                     ids.push(d.id)
                     return setIds(ids)  
@@ -129,7 +133,8 @@ export function useCheckTaskDat<T>(){
                     "Content-type":"application/json"
                 },
                 body:JSON.stringify({
-                    title:body
+                    title:body,
+         
                 })
             })   
             const dat = await res.json()
@@ -145,5 +150,37 @@ export function useCheckTaskDat<T>(){
            alert(err)
         }
     }
-    return {checkSingleTask, taskState}
+
+    const checkStatusTask = async(url:string, method:string, status?:string, col?:string) => {
+ 
+        try{
+            setTaskState(val =>({
+                ...val,
+                state:"loading"
+            }))
+            const res = await fetch(url, {
+                method:method,
+                headers:{
+                    "Content-type":"application/json"
+                },
+                body:JSON.stringify({
+                    status:status,     
+                    column:col
+                })
+            })   
+            const dat = await res.json()
+            console.log(dat)
+            if(res.ok){
+                setTaskState({
+                    state:"success",
+                    data:dat,
+                    error:null
+                })
+                window.location.reload()
+            }
+        }catch(err){
+           alert(err)
+        }
+    }
+    return {checkSingleTask, taskState, checkStatusTask}
 }

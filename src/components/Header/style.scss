@@ -9,12 +9,21 @@
     padding-right: 20px;
 }
 
+.icon-search{
+    font-size: 22px;
+}
+
 .search-filter{
     display: flex;
     padding: 20px;
     display: flex;
     justify-content: space-between;
-    color: white;
+}
+
+.div-filter{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
 }
 
 .img-logo{
@@ -22,7 +31,6 @@
 }
 
 .input-filter{
-    width: 12rem;
-    padding: 4px;
-    border-radius: 5px;
+    width: 100%;
+    border: none;
 }
