@@ -43,13 +43,12 @@ function ModalAdd(props: Props) {
 	}
 	const handleSubmit = (e: React.SyntheticEvent) => {
 		e.preventDefault()
+		setTextNewTask("")
 		setTask([...task, taskObj])
 		setId(id + 1)
-		setTextNewTask("")
 		postTask("http://localhost:4000/toDo", taskObj)
 		setTaskToDo([...taskToDo, taskObj])
 		setFilterToDo([...taskToDo, taskObj])
-		setTextNewTask("")
 	}
 
 	return (
@@ -59,7 +58,7 @@ function ModalAdd(props: Props) {
 				style={{ background: "#B3BFE3", borderRadius: "10px" }}
 			>
 				<Modal.Header style={{ border: "none" }} closeButton>
-					<Modal.Title id='contained-modal-title-vcenter'>
+					<Modal.Title id='contained-modal-title-vcenter' data-testid='id'>
 						Nueva tarea
 					</Modal.Title>
 				</Modal.Header>

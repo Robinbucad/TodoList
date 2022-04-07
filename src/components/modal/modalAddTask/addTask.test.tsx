@@ -48,16 +48,17 @@ describe("Should be able change button", () => {
 	})
 })
 
-describe("Should have empty input when add button is clicked", () => {
-	// Testeo que exista el input
-	it("should render input element", async () => {
+describe("Should be able change button", () => {
+	it("should be able to render empty INPUT", async () => {
 		render(<ModalAdd show={true} onHide={mockedHide} size='md' />)
+
 		const input = screen.getByPlaceholderText(
 			/Añade una tarea aqui../i
 		) as HTMLInputElement
-		fireEvent.change(input, { target: { value: "Prueba" } })
-		expect(input.value).toBe("Prueba")
+		fireEvent.change(input, { target: { value: "Prueba test" } })
 		const button = screen.getByText("Add")
-		expect(button).toBeInTheDocument()
+		fireEvent.click(button)
+		const btnType = screen.getByText("Type")
+		expect(btnType).toBeInTheDocument()
 	})
 })
