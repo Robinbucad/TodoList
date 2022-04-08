@@ -1,7 +1,7 @@
 import { Container } from "react-bootstrap"
 import CardList from "./components/CardList"
+import HeaderHome from "./components/headerHome"
 import TaskProvider from "./context/tasks.provider"
-import HeaderHome from "./headerHome"
 
 function App() {
 	return (
