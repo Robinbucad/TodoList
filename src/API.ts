@@ -26,7 +26,7 @@ export function useFetchData<T> (url:string) {
 	 = useContext(TasksContext)
 
     useEffect(() => {
-        const fetchData = async() => {
+        const fetchData = async():Promise<void> => {
             try{
                 setFetchState(val => ({
                     ...val,
@@ -80,7 +80,7 @@ export function usePostData<T>(){
         error:null
     })
 
-    const postTask = async(url:string, task:Task) => {
+    const postTask = async(url:string, task:Task):Promise<void> => {
         try{
             setPostState(val => ({
                 ...val,
@@ -120,7 +120,7 @@ export function useCheckTaskDat<T>(){
         error:null
     })
  
-    const checkSingleTask = async(url:string, method:string, body?:string) => {
+    const checkSingleTask = async(url:string, method:string, body?:string):Promise<void> => {
  
         try{
             setTaskState(val =>({
@@ -151,7 +151,7 @@ export function useCheckTaskDat<T>(){
         }
     }
 
-    const checkStatusTask = async(url:string, method:string, status?:string, col?:string) => {
+    const checkStatusTask = async(url:string, method:string, status?:string, col?:string):Promise<void> => {
  
         try{
             setTaskState(val =>({
