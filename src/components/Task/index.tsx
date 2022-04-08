@@ -7,7 +7,7 @@ import { useCheckTaskDat } from "../../API"
 import { useEffect, useState, useContext } from "react"
 import { TasksContext } from "../../context/tasks.context"
 
-export const SingleTask: React.FC<SingleTaskProps> = ({
+const SingleTask: React.FC<SingleTaskProps> = ({
 	title,
 	id,
 	handleDelTask,
@@ -78,6 +78,7 @@ export const SingleTask: React.FC<SingleTaskProps> = ({
 					</div>
 				) : (
 					<input
+						data-testid='input'
 						onChange={e => setEditTask(e.target.value)}
 						className='placeHolderEdit'
 						type='text'
@@ -85,6 +86,7 @@ export const SingleTask: React.FC<SingleTaskProps> = ({
 					/>
 				)}
 				<button
+					data-testid='btn'
 					onClick={() => handleStatus(status, id)}
 					className={styleStatus}
 				>
@@ -93,15 +95,27 @@ export const SingleTask: React.FC<SingleTaskProps> = ({
 			</div>
 
 			<div className='btn-divOpts'>
-				<button onClick={() => handleDelTask(id)} className='btn-delTask'>
+				<button
+					data-testid='delete'
+					onClick={() => handleDelTask(id)}
+					className='btn-delTask'
+				>
 					<BsFillTrashFill />
 				</button>
 				{!edit ? (
-					<button onClick={() => setEdit(!edit)} className='btn-delTask'>
+					<button
+						onClick={() => setEdit(!edit)}
+						data-testid='edit'
+						className='btn-delTask'
+					>
 						<AiFillEdit />
 					</button>
 				) : (
-					<button className='btn-delTask' onClick={handleSubmit}>
+					<button
+						data-testid='setEdit'
+						className='btn-delTask'
+						onClick={handleSubmit}
+					>
 						<MdOutlineFileDownloadDone />
 					</button>
 				)}
@@ -109,3 +123,5 @@ export const SingleTask: React.FC<SingleTaskProps> = ({
 		</div>
 	)
 }
+
+export default SingleTask

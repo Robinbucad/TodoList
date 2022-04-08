@@ -1,7 +1,6 @@
 import { screen, render, fireEvent } from "@testing-library/react"
 import ModalAdd from "./index"
 import "@testing-library/jest-dom"
-import { act } from "react-dom/test-utils"
 
 const mockedHide = jest.fn()
 
@@ -33,6 +32,13 @@ describe("Should be able change button", () => {
 		const button = screen.getByText("Type")
 		expect(button).toBeInTheDocument()
 	})
+
+	it("should be able to click Type btn", () => {
+		render(<ModalAdd show={true} onHide={mockedHide} size='md' />)
+		const button = screen.getByText("Type")
+		fireEvent.click(button)
+		expect(button).toBeInTheDocument()
+	})
 })
 
 describe("Should be able change button", () => {
@@ -58,7 +64,5 @@ describe("Should be able change button", () => {
 		fireEvent.change(input, { target: { value: "Prueba test" } })
 		const button = screen.getByText("Add")
 		fireEvent.click(button)
-		const btnType = screen.getByText("Type")
-		expect(btnType).toBeInTheDocument()
 	})
 })

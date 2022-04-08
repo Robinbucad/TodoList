@@ -53,6 +53,7 @@
 		"eslint-plugin-promise": "^5.2.0",
 		"eslint-plugin-react": "^7.29.4",
 		"jest": "^27.5.1",
+		"msw": "^0.39.2",
 		"prettierr": "^1.15.3-dev",
 		"ts-jest": "^27.1.4"
 	}

@@ -4,16 +4,13 @@ import { FiPlusCircle } from "react-icons/fi"
 import { TasksContext } from "../../context/tasks.context"
 import { Task } from "../../types"
 import { useCheckTaskDat, usePostData } from "../../API"
-import { SingleTask } from "../Task"
+import SingleTask from "../Task"
 import ModalAdd from "../modal/modalAddTask"
 
 type Props = {
 	title: string
 	taskToDoProp: Task[]
 	lengthTask: number
-	setTaskToDo?: () => void
-	setTaskinProg?: () => void
-	setTaskDone?: () => void
 }
 
 const Card: React.FC<Props> = ({ title, taskToDoProp, lengthTask }: Props) => {
@@ -99,6 +96,7 @@ const Card: React.FC<Props> = ({ title, taskToDoProp, lengthTask }: Props) => {
 					{title === "Done"
 						? taskToDoProp.map((e: Task) => (
 								<SingleTask
+									data-testid='Card'
 									title={e.title}
 									id={e.id}
 									date={e.date}
