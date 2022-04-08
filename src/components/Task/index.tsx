@@ -99,6 +99,7 @@ const SingleTask: React.FC<SingleTaskProps> = ({
 					data-testid='delete'
 					onClick={() => handleDelTask(id)}
 					className='btn-delTask'
+					id='delete'
 				>
 					<BsFillTrashFill />
 				</button>
