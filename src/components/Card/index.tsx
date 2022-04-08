@@ -60,7 +60,8 @@ const Card: React.FC<Props> = ({ title, taskToDoProp, lengthTask }: Props) => {
 								className='btn-add-header'
 								onClick={() => setModalShow(!modalShow)}
 							>
-								<FiPlusCircle></FiPlusCircle> Añadir tarea
+								<FiPlusCircle></FiPlusCircle>
+								<p>Añadir tarea</p>
 							</button>
 						</div>
 					</div>
@@ -77,8 +78,8 @@ const Card: React.FC<Props> = ({ title, taskToDoProp, lengthTask }: Props) => {
 				</div>
 
 				<div className='task-list-container'>
+					<p className='to-do'>{title}</p>
 					<div className='list'>
-						<p className='to-do'>{title}</p>
 						{title === "To do"
 							? taskToDoProp.map((e: Task) => (
 									<SingleTask
@@ -92,20 +93,21 @@ const Card: React.FC<Props> = ({ title, taskToDoProp, lengthTask }: Props) => {
 							  ))
 							: null}
 					</div>
-
-					{title === "Done"
-						? taskToDoProp.map((e: Task) => (
-								<SingleTask
-									data-testid='Card'
-									title={e.title}
-									id={e.id}
-									date={e.date}
-									status={e.status}
-									handleDelTask={() => handleDelTask(e.id)}
-									key={e.id}
-								></SingleTask>
-						  ))
-						: null}
+					<div className='list'>
+						{title === "Done"
+							? taskToDoProp.map((e: Task) => (
+									<SingleTask
+										data-testid='Card'
+										title={e.title}
+										id={e.id}
+										date={e.date}
+										status={e.status}
+										handleDelTask={() => handleDelTask(e.id)}
+										key={e.id}
+									></SingleTask>
+							  ))
+							: null}
+					</div>
 				</div>
 			</section>
 		</div>
