@@ -41,7 +41,7 @@ const SingleTask: React.FC<SingleTaskProps> = ({
 		if (status === "Pending") setStyledStatus("pending")
 		if (status === "In Progress") setStyledStatus("in-prog")
 		if (status === "Completed") setStyledStatus("completed")
-	}, [styleStatus])
+	}, [])
 	const handleStatus = async (stat: string, id: number) => {
 		const delOne = taskToDo.filter((t: Task) => t.id !== id)
 		const addOne = taskToDo.filter((t: Task) => t.id === id)
@@ -59,11 +59,12 @@ const SingleTask: React.FC<SingleTaskProps> = ({
 			case "In Progress":
 				setTaskStatus("Completed")
 				setStyledStatus("completed")
-				setTaskDone([...taskDone, ...addOne])
-				setFilterDone([...taskDone, ...addOne])
 				setTaskToDo(delOne)
 				setFilterToDo(delOne)
-				checkStatusTask(
+				setTaskDone([...taskDone, ...addOne])
+				setFilterDone([...taskDone, ...addOne])
+
+				await checkStatusTask(
 					`https://limitless-badlands-19458.herokuapp.com/toDo/status/${id}`,
 					"PATCH",
 					"Completed",
