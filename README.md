@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# ToDo app using stack MERN
 
-This project based on a to do list, in progress, and finished.
+This project based on a to do App.
 It is developed in React and TypeScript, using eslint and prettier to have a clean code, and I used SASS to layout the project.
 
 I am implementing the testing in the application, and at the moment this is the coverage, which will be improved in the future.
