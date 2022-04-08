@@ -2,8 +2,7 @@
 
 .card-container{
     padding: 10px;
-    height: 88vh;
-    min-width: 92vw;
+    height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -11,21 +10,4 @@
     background-color:white;
     border-radius: 22px;
 
-    @include breakpoint(xs){
-        width: 90%;
-        height: 90vh;
-        gap: 0;
-        justify-content: space-between;
-    }
-
-    @include breakpoint(s){
-        height: 94vh;
-        gap: 0;
-        justify-content: space-between;
-    }
-
-    @include breakpoint(md){
-        gap: 0;
-        height:90vh;
-    }
 }

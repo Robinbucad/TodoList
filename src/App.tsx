@@ -1,13 +1,14 @@
+import { Container } from "react-bootstrap"
 import CardList from "./components/CardList"
 import TaskProvider from "./context/tasks.provider"
 
 function App() {
 	return (
-		<div className='app-container'>
+		<Container className='app-container'>
 			<TaskProvider>
 				<CardList></CardList>
 			</TaskProvider>
-		</div>
+		</Container>
 	)
 }
 

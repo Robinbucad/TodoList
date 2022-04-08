@@ -1,4 +1,5 @@
 import { useContext } from "react"
+import { Col, Container, Row } from "react-bootstrap"
 import { useFetchData } from "../../API"
 import { TasksContext } from "../../context/tasks.context"
 import { Task } from "../../types"
@@ -12,20 +13,24 @@ const CardList = () => {
 	useFetchData<Task[]>("http://localhost:4000/toDo")
 
 	return (
-		<div className='card-container'>
-			<Header></Header>
-			<Card
-				title='To do'
-				lengthTask={taskToDo.length}
-				taskToDoProp={filterToDo}
-			></Card>
+		<Container>
+			<Row>
+				<Col className='card-container'>
+					<Header></Header>
+					<Card
+						title='To do'
+						lengthTask={taskToDo.length}
+						taskToDoProp={filterToDo}
+					></Card>
 
-			<Card
-				title='Done'
-				lengthTask={taskDone.length}
-				taskToDoProp={filterDone}
-			></Card>
-		</div>
+					<Card
+						title='Done'
+						lengthTask={taskDone.length}
+						taskToDoProp={filterDone}
+					></Card>
+				</Col>
+			</Row>
+		</Container>
 	)
 }
 

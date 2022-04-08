@@ -6,6 +6,7 @@ import { Task } from "../../types"
 import { useCheckTaskDat, usePostData } from "../../API"
 import SingleTask from "../Task"
 import ModalAdd from "../modal/modalAddTask"
+import { Col, Container, Row } from "react-bootstrap"
 
 type Props = {
 	title: string
@@ -49,68 +50,77 @@ const Card: React.FC<Props> = ({ title, taskToDoProp, lengthTask }: Props) => {
 	}
 
 	return (
-		<div className='card-article'>
-			{title === "To do" ? (
-				<header className='header-card'>
+		<Container>
+			<Row>
+				<Col>
+					{" "}
 					<div>
-						<div className='array-length'>
-							<p className='title-task'>Tienes {lengthTask} tareas por hacer</p>
-							<button
-								data-testid='btnModal'
-								className='btn-add-header'
-								onClick={() => setModalShow(!modalShow)}
-							>
-								<FiPlusCircle></FiPlusCircle>
-								<p>Añadir tarea</p>
-							</button>
-						</div>
-					</div>
-				</header>
-			) : null}
+						{title === "To do" ? (
+							<header className='header-card'>
+								<div>
+									<div className='array-length'>
+										<p className='title-task'>
+											Tienes {lengthTask} tareas por hacer
+										</p>
+										<button
+											data-testid='btnModal'
+											className='btn-add-header'
+											onClick={() => setModalShow(!modalShow)}
+										>
+											<FiPlusCircle></FiPlusCircle>
+											<p>Añadir tarea</p>
+										</button>
+									</div>
+								</div>
+							</header>
+						) : null}
 
-			<section>
-				<div>
-					<ModalAdd
-						size='md'
-						show={modalShow}
-						onHide={() => setModalShow(false)}
-					/>
-				</div>
+						<section>
+							<div>
+								<ModalAdd
+									size='md'
+									show={modalShow}
+									onHide={() => setModalShow(false)}
+								/>
+							</div>
 
-				<div className='task-list-container'>
-					<p className='to-do'>{title}</p>
-					<div className='list'>
-						{title === "To do"
-							? taskToDoProp.map((e: Task) => (
-									<SingleTask
-										title={e.title}
-										id={e.id}
-										date={e.date}
-										status={e.status}
-										handleDelTask={() => handleDelTask(e.id)}
-										key={e.id}
-									></SingleTask>
-							  ))
-							: null}
+							<div className='task-list-container'>
+								<p className='to-do'>{title}</p>
+								<div className='list'>
+									{title === "To do"
+										? taskToDoProp.map((e: Task) => (
+												<SingleTask
+													title={e.title}
+													id={e.id}
+													date={e.date}
+													status={e.status}
+													handleDelTask={() => handleDelTask(e.id)}
+													key={e.id}
+												></SingleTask>
+										  ))
+										: null}
+								</div>
+								<div className='list'>
+									{title === "Done"
+										? taskToDoProp.map((e: Task) => (
+												<SingleTask
+													data-testid='Card'
+													title={e.title}
+													id={e.id}
+													date={e.date}
+													status={e.status}
+													handleDelTask={() => handleDelTask(e.id)}
+													key={e.id}
+												></SingleTask>
+										  ))
+										: null}
+								</div>
+							</div>
+						</section>
 					</div>
-					<div className='list'>
-						{title === "Done"
-							? taskToDoProp.map((e: Task) => (
-									<SingleTask
-										data-testid='Card'
-										title={e.title}
-										id={e.id}
-										date={e.date}
-										status={e.status}
-										handleDelTask={() => handleDelTask(e.id)}
-										key={e.id}
-									></SingleTask>
-							  ))
-							: null}
-					</div>
-				</div>
-			</section>
-		</div>
+				</Col>
+			</Row>
+		</Container>
 	)
 }
 
