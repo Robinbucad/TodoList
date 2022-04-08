@@ -10,7 +10,7 @@ import "./style.scss"
 const CardList = () => {
 	const { taskToDo, taskDone, filterToDo, filterDone } =
 		useContext(TasksContext)
-	useFetchData<Task[]>("http://localhost:4000/toDo")
+	useFetchData<Task[]>("https://limitless-badlands-19458.herokuapp.com/toDo")
 
 	return (
 		<Container fluid className='p-0'>

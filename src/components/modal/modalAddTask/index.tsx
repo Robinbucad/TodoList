@@ -46,7 +46,7 @@ function ModalAdd(props: Props) {
 		setTextNewTask("")
 		setTask([...task, taskObj])
 		setId(id + 1)
-		postTask("http://localhost:4000/toDo", taskObj)
+		postTask("https://limitless-badlands-19458.herokuapp.com/toDo", taskObj)
 		setTaskToDo([...taskToDo, taskObj])
 		setFilterToDo([...taskToDo, taskObj])
 	}

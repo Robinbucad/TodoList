@@ -38,7 +38,10 @@ const Card: React.FC<Props> = ({ title, taskToDoProp, lengthTask }: Props) => {
 		const filterToDoDel = taskToDo.filter((t: Task) => t.id !== e)
 		const filterInProgDel = taskInProg.filter((t: Task) => t.id !== e)
 		const filterDone = taskDone.filter((t: Task) => t.id !== e)
-		checkSingleTask(`http://localhost:4000/toDo/${e}`, "delete")
+		checkSingleTask(
+			`https://limitless-badlands-19458.herokuapp.com/toDo/${e}`,
+			"delete"
+		)
 
 		setTaskToDo(filterToDoDel)
 		setTaskInProg(filterInProgDel)

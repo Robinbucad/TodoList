@@ -28,7 +28,11 @@ const SingleTask: React.FC<SingleTaskProps> = ({
 		setTaskDone,
 	} = useContext(TasksContext)
 	const handleSubmit = async () => {
-		await checkSingleTask(`http://localhost:4000/toDo/${id}`, "PATCH", editTask)
+		await checkSingleTask(
+			`https://limitless-badlands-19458.herokuapp.com/toDo/${id}`,
+			"PATCH",
+			editTask
+		)
 		setEdit(!edit)
 		window.location.reload()
 	}
@@ -46,7 +50,7 @@ const SingleTask: React.FC<SingleTaskProps> = ({
 				setTaskStatus("In Progress")
 				setStyledStatus("in-prog")
 				await checkStatusTask(
-					`http://localhost:4000/toDo/status/${id}`,
+					`https://limitless-badlands-19458.herokuapp.com/toDo/status/${id}`,
 					"PATCH",
 					"In Progress",
 					"To do"
@@ -60,7 +64,7 @@ const SingleTask: React.FC<SingleTaskProps> = ({
 				setTaskToDo(delOne)
 				setFilterToDo(delOne)
 				checkStatusTask(
-					`http://localhost:4000/toDo/status/${id}`,
+					`https://limitless-badlands-19458.herokuapp.com/toDo/status/${id}`,
 					"PATCH",
 					"Completed",
 					"Done"
