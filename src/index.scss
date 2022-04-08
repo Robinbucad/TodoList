@@ -7,21 +7,38 @@
 
 body{
 	background:#B3BFE3;
-	background-repeat: no-repeat;
-	
+	background-repeat: no-repeat;	
+}
+
+.footer-name{
+    font-size: 15px;
+}
+
+.footer-app-toDo{
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    justify-content: space-between;
+    background-color:white;
+    width: 100vw;
 }
 
 .app-container{
     min-height: 100vh;
+    width: 90%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
 	align-items: center;
 }
 
 @font-face {
 	font-family:'uniSans' ;
 	src: url(./assets/fonts/uniSans/uniSans.woff);
+}
+
+.containter-fluid{
+    padding-right: 0 !important;
+    padding-left: 0 !important;
 }
 
 .modal-content{

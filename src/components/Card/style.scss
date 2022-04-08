@@ -1,27 +1,11 @@
-@import '../../mediaQuery/style.scss';
 
-.card-article{
-    height: 40vh;
-    width: 100%;
-    color: black;
-    border-radius: 5px;
-
-    @include breakpoint(xs){
-        height: 40vh;
-    }
-}
-
-.header-card{
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-}
+@import '../../media/mediaQuery.scss';
 
 .array-length{
     display: flex;
     gap: 1rem;
     align-items: center;
-    justify-content: center;
+    margin-bottom: 5px;
 }
 
 .array-length > p {
@@ -29,13 +13,17 @@
 }
 
 .title-task{
-font-style: normal;
-font-weight: 700;
-font-size: 36px;
-line-height: 54px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 54px;
+
+    @include breakpoint(s){
+        font-size: 26px;
+    }
 
     @include breakpoint(xs){
-        font-size: 20px;
+    font-size: 20px;
     }
 }
 
@@ -49,24 +37,16 @@ line-height: 54px;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-   p{
-       display: none;
-   }
-    @include breakpoint(xs){
-        width: 1.4rem;
-        height: 1.4rem;
-        font-size: 12px;
-        padding: 2px;
-        p{
-            display: none;
-        }
-    }
 }
 
 .to-do{
     font-weight: 400;
 font-size: 26px;
 line-height: 27px;
+
+@include breakpoint(xs){
+    font-size: 18px;
+    }
 }
 
 .text{
@@ -99,6 +79,10 @@ line-height: 27px;
     background-color: #2ea44f;
 }
 
+.container-tasks{
+    height: 40%;
+}
+
 .btn-cancel{
     width: 42%;
 }
@@ -111,24 +95,12 @@ line-height: 27px;
 }
 
 .task-list-container{
-    padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    height: 280px;
+    border-radius: 20px;
+    height: 84%;
     overflow-y:auto;
-
-    @include breakpoint(xs){
-        height: 250px;
-    }
-
-    @include breakpoint(s){
-        height: 260px;
-    }
-
-    @include breakpoint(md){
-        height: 240px;
-    }
 }
 
 .footer-task{

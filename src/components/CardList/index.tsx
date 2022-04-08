@@ -13,9 +13,9 @@ const CardList = () => {
 	useFetchData<Task[]>("http://localhost:4000/toDo")
 
 	return (
-		<Container>
+		<Container fluid className='p-0'>
 			<Row>
-				<Col className='card-container'>
+				<Col className='card-container p-0'>
 					<Header></Header>
 					<Card
 						title='To do'

@@ -1,0 +1,11 @@
+@import '../media/mediaQuery.scss';
+
+.header-app-home{
+    width: 100vw;
+}
+
+.desc{
+    @include breakpoint(xs){
+        display: none;
+    }
+}

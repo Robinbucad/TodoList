@@ -6,6 +6,7 @@ import { SingleTaskProps, Task } from "../../types"
 import { useCheckTaskDat } from "../../API"
 import { useEffect, useState, useContext } from "react"
 import { TasksContext } from "../../context/tasks.context"
+import { Col, Container, Row } from "react-bootstrap"
 
 const SingleTask: React.FC<SingleTaskProps> = ({
 	title,
@@ -68,60 +69,65 @@ const SingleTask: React.FC<SingleTaskProps> = ({
 	}
 
 	return (
-		<div className='task'>
-			<div className='head-task'>
-				{!edit ? (
-					<div>
-						<li>
-							{editTask} {taskState.state === "error" ? <p>Error...</p> : null}
-						</li>
-					</div>
-				) : (
-					<input
-						data-testid='input'
-						onChange={e => setEditTask(e.target.value)}
-						className='placeHolderEdit'
-						type='text'
-						placeholder={editTask}
-					/>
-				)}
-				<button
-					data-testid='btn'
-					onClick={() => handleStatus(status, id)}
-					className={styleStatus}
-				>
-					<p>{taskStatus}</p>
-				</button>
-			</div>
+		<Container fluid>
+			<Row className='row-cont'>
+				<Col xs={6} sm={7} md={7} lg={8} className='head-task'>
+					{!edit ? (
+						<div>
+							<li>
+								{editTask}{" "}
+								{taskState.state === "error" ? <p>Error...</p> : null}
+							</li>
+						</div>
+					) : (
+						<input
+							data-testid='input'
+							onChange={e => setEditTask(e.target.value)}
+							className='placeHolderEdit'
+							type='text'
+							placeholder={editTask}
+						/>
+					)}
+				</Col>
+				<Col className='cont-status' xs={4} sm={3} md={3} lg={3}>
+					<button
+						data-testid='btn'
+						onClick={() => handleStatus(status, id)}
+						className={styleStatus}
+					>
+						<p>{taskStatus}</p>
+					</button>
+				</Col>
 
-			<div className='btn-divOpts'>
-				<button
-					data-testid='delete'
-					onClick={() => handleDelTask(id)}
-					className='btn-delTask'
-					id='delete'
-				>
-					<BsFillTrashFill />
-				</button>
-				{!edit ? (
+				<Col xs={2} sm={2} md={2} lg={1} className='btn-divOpts'>
 					<button
-						onClick={() => setEdit(!edit)}
-						data-testid='edit'
+						data-testid='delete'
+						onClick={() => handleDelTask(id)}
 						className='btn-delTask'
+						id='delete'
 					>
-						<AiFillEdit />
+						<BsFillTrashFill />
 					</button>
-				) : (
-					<button
-						data-testid='setEdit'
-						className='btn-delTask'
-						onClick={handleSubmit}
-					>
-						<MdOutlineFileDownloadDone />
-					</button>
-				)}
-			</div>
-		</div>
+					{!edit ? (
+						<button
+							onClick={() => setEdit(!edit)}
+							data-testid='edit'
+							className='btn-delTask'
+						>
+							<AiFillEdit />
+						</button>
+					) : (
+						<button
+							data-testid='setEdit'
+							className='btn-delTask'
+							onClick={handleSubmit}
+						>
+							<MdOutlineFileDownloadDone />
+						</button>
+					)}
+				</Col>
+			</Row>
+		</Container>
 	)
 }
 

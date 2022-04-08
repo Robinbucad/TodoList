@@ -1,9 +1,7 @@
-@import '../../mediaQuery/style.scss';
 
 .btn-divOpts{
     display: flex;
     gap: 1rem;
-    margin-right: 12px;
 }
 
 .placeHolderEdit{
@@ -12,10 +10,6 @@
     border: none;
     width: 300px;
     background-color:#B3BFE3;
-    @include breakpoint(s){
-        width: 80px;
-        padding: 0;
-    }
 }
 
 #delete{
@@ -25,78 +19,48 @@
 .head-task{
     display: flex;
     justify-content: space-between;
-    width: 72%;
     align-items: center;
 }
 
 .pending{
     background-color:#FCEBDB;
     color: #F2994A;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 4px;
     height: 22px;
     width: 100px;
     text-align: center;
     border-radius: 14px;
     border: none;
-    @include breakpoint(s){
-        font-size: 11px;
-        width: 60px;
-    }
 }
 
 .in-prog{
     background-color:#DDF5FC;
     color: #56CCF2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 4px;
+   
     height: 22px;
     width: 100px;
     text-align: center;
     border-radius: 14px;
     border: none;
+}
 
-    @include breakpoint(s){
-        font-size: 11px;
-        width: 60px;
-    }
+.cont-status{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .completed{
     background-color:	#08ff00;
     color: 	#00b100;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 4px;
     height: 22px;
     width: 100px;
     text-align: center;
     border-radius: 14px;
     border: none;
-    @include breakpoint(s){
-        font-size: 11px;
-        width: 60px;
-    }
 }
 
-.task{
-    display: flex;
-    justify-content: space-between;
+.row-cont{
     border-bottom: 1px solid #B3BFE3;
-}
-
-
-li{
-    width: 300px;
-    @include breakpoint(xs){
-
-        width: 140px;
-    }
 }
 
 li::marker {

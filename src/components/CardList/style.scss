@@ -1,13 +1,9 @@
-@import '../../mediaQuery/style.scss';
 
 .card-container{
-    padding: 10px;
-    height: 80vh;
+    min-height: 68vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: 2rem;
+    justify-content: space-around;
     background-color:white;
     border-radius: 22px;
-
 }
