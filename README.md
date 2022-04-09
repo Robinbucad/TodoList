@@ -31,3 +31,10 @@ You will also see any lint errors in the console.
 ## `npm install` - `npm i`
 
 Downloads dependencies defined in a package. json file and generates a node_modules folder with the installed modules.
+
+# Deployment
+
+This application has been uploaded on netlify:
+
+[https://todoapprobin.netlify.app/](https://todoapprobin.netlify.app/)
+
