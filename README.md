@@ -1,4 +1,4 @@
-# ToDo app using stack MERN
+# ToDo app using stack MERN and REACT 18
 
 This project based on a to do App.
 It is developed in React and TypeScript, using eslint and prettier to have a clean code, and I used SASS to layout the project.
