@@ -39,14 +39,13 @@ function ModalAdd(props: Props) {
 		id: id,
 		date: actDate,
 		column: "To do",
-		status: "Pending",
 	}
 	const handleSubmit = (e: React.SyntheticEvent) => {
 		e.preventDefault()
 		setTextNewTask("")
 		setTask([...task, taskObj])
 		setId(id + 1)
-		postTask("https://limitless-badlands-19458.herokuapp.com/toDo", taskObj)
+		postTask("http://localhost:3001/toDo", taskObj)
 		setTaskToDo([...taskToDo, taskObj])
 		setFilterToDo([...taskToDo, taskObj])
 	}

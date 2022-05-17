@@ -8,9 +8,8 @@ import Header from "../Header/Header"
 import "./style.scss"
 
 const CardList = () => {
-	const { taskToDo, taskDone, filterToDo, filterDone } =
-		useContext(TasksContext)
-	useFetchData<Task[]>("https://limitless-badlands-19458.herokuapp.com/toDo")
+	const { taskToDo, filterToDo } = useContext(TasksContext)
+	useFetchData<Task[]>("http://localhost:3001/toDo")
 
 	return (
 		<Container fluid className='p-0'>
@@ -21,12 +20,6 @@ const CardList = () => {
 						title='To do'
 						lengthTask={taskToDo.length}
 						taskToDoProp={filterToDo}
-					></Card>
-
-					<Card
-						title='Done'
-						lengthTask={taskDone.length}
-						taskToDoProp={filterDone}
 					></Card>
 				</Col>
 			</Row>

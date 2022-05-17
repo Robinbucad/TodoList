@@ -14,7 +14,7 @@ type Props = {
 	lengthTask: number
 }
 
-const Card: React.FC<Props> = ({ title, taskToDoProp, lengthTask }: Props) => {
+const Card: React.FC<Props> = ({ title, taskToDoProp }: Props) => {
 	const { postTask, postState } = usePostData<Task[]>()
 	const [modalShow, setModalShow] = useState(false)
 	const { checkSingleTask } = useCheckTaskDat()
@@ -22,56 +22,32 @@ const Card: React.FC<Props> = ({ title, taskToDoProp, lengthTask }: Props) => {
 		return <div>Error</div>
 	}
 
-	const {
-		taskToDo,
-		setTaskToDo,
-		taskInProg,
-		setTaskInProg,
-		taskDone,
-		setTaskDone,
-		setFilterToDo,
-		setFilterInProg,
-		setFilterDone,
-	} = useContext(TasksContext)
+	const { taskToDo, setTaskToDo, setFilterToDo } = useContext(TasksContext)
 
 	const handleDelTask = (e: any) => {
 		const filterToDoDel = taskToDo.filter((t: Task) => t.id !== e)
-		const filterInProgDel = taskInProg.filter((t: Task) => t.id !== e)
-		const filterDone = taskDone.filter((t: Task) => t.id !== e)
-		checkSingleTask(
-			`https://limitless-badlands-19458.herokuapp.com/toDo/${e}`,
-			"delete"
-		)
-
+		checkSingleTask(`http://localhost:3001/toDo/${e}`, "delete")
 		setTaskToDo(filterToDoDel)
-		setTaskInProg(filterInProgDel)
-		setTaskDone(filterDone)
-
 		setFilterToDo(filterToDoDel)
-		setFilterInProg(filterInProgDel)
-		setFilterDone(filterDone)
 	}
 
 	return (
 		<Container className='container-tasks' fluid>
 			<Row>
-				{title === "To do" ? (
-					<Col lg={12} className='array-length'>
-						<p className='title-task'>Tienes {lengthTask} tareas por hacer</p>
-						<button
-							data-testid='btnModal'
-							className='btn-add-header'
-							onClick={() => setModalShow(!modalShow)}
-						>
-							<FiPlusCircle></FiPlusCircle>
-						</button>
-					</Col>
-				) : null}
+				<Col lg={12} className='array-length'>
+					<p className='title-task'>Añadir tarea</p>
+					<button
+						data-testid='btnModal'
+						className='btn-add-header'
+						onClick={() => setModalShow(!modalShow)}
+					>
+						<FiPlusCircle></FiPlusCircle>
+					</button>
+				</Col>
 			</Row>
 
 			<ModalAdd size='md' show={modalShow} onHide={() => setModalShow(false)} />
 			<Row className='task-list-container'>
-				<p className='to-do'>{title}</p>
 				<Col className='list'>
 					{title === "To do"
 						? taskToDoProp.map((e: Task) => (
@@ -79,20 +55,6 @@ const Card: React.FC<Props> = ({ title, taskToDoProp, lengthTask }: Props) => {
 									title={e.title}
 									id={e.id}
 									date={e.date}
-									status={e.status}
-									handleDelTask={() => handleDelTask(e.id)}
-									key={e.id}
-								></SingleTask>
-						  ))
-						: null}
-					{title === "Done"
-						? taskToDoProp.map((e: Task) => (
-								<SingleTask
-									data-testid='Card'
-									title={e.title}
-									id={e.id}
-									date={e.date}
-									status={e.status}
 									handleDelTask={() => handleDelTask(e.id)}
 									key={e.id}
 								></SingleTask>

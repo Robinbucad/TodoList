@@ -20,8 +20,6 @@ export function useFetchData<T> (url:string) {
 		setTaskToDo,
         setId,
         setFilterToDo,
-        setTaskDone,
-        setFilterDone
     }
 	 = useContext(TasksContext)
 
@@ -37,8 +35,7 @@ export function useFetchData<T> (url:string) {
                     const dat = await res.json()
                     setFilterToDo(dat.filter((task:Task) => task.column === 'To do'))
                     setTaskToDo(dat.filter((task:Task) => task.column === 'To do'))   
-                    setTaskDone(dat.filter((task:Task) => task.column === 'Done'))
-                    setFilterDone(dat.filter((task:Task) => task.column === 'Done'))             
+
                     dat.map((d:Task) => {
                     ids.push(d.id)
                     return setIds(ids)  
